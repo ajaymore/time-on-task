@@ -1,0 +1,104 @@
+mutation createSchool($input: SchoolInput!) {
+  createSchool(input: $input) {
+    address
+    id
+    name
+    town
+    createdAt
+    updatedAt
+  }
+}
+
+# {
+#   "input": {
+#     "address": "Bangalore",
+#     "name": "Vidyalaya",
+#     "town": "SomeHalli"
+#   }
+# }
+
+mutation createClassroom($input: ClassroomInput!) {
+  createClassroom(input: $input) {
+    id
+    subject
+    teacher
+    totalStudents
+  }
+}
+
+# {
+#   "input": {
+#     "type": "not-teaching",
+#     "grade": "1st",
+#     "totalStudents": 20,
+#     "school": "59e88aea6891614736c39fa7",
+#     "subject": "ABCDEFG",
+#     "teacher": "Maths teacher"
+#   }
+# }
+
+mutation removeCollaboration(
+  $schoolId: ID!
+  $userId: ID!
+  $collaborationType: Collboration!
+) {
+  addCollborator(
+    schoolId: $schoolId
+    userId: $userId
+    collaborationType: $collaborationType
+  ) {
+    address
+    id
+    sharedWith {
+      id
+      email
+    }
+    owner {
+      id
+      email
+    }
+    contributors {
+      id
+      email
+    }
+  }
+}
+
+# {
+#   "schoolId": "59e9e9e5a6ba937c5ce91aba",
+#   "userId": "59e9e88ab4d98a7bd21664c6",
+#   "collaborationType": "CONTRIBUTING"
+# }
+
+mutation removeCollaboration(
+  $schoolId: ID!
+  $userId: ID!
+  $collaborationType: Collboration!
+) {
+  addCollborator(
+    schoolId: $schoolId
+    userId: $userId
+    collaborationType: $collaborationType
+  ) {
+    address
+    id
+    sharedWith {
+      id
+      email
+    }
+    owner {
+      id
+      email
+    }
+    contributors {
+      id
+      email
+    }
+  }
+}
+
+# {
+#   "schoolId": "59e9e9e5a6ba937c5ce91aba",
+#   "userId": "59e9e88ab4d98a7bd21664c6",
+#   "collaborationType": "CONTRIBUTING"
+# }

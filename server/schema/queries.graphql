@@ -1,0 +1,5 @@
+type Query {
+  getUser: User
+  getSchool(schoolId: ID!): School
+  getClassroom(classroomId: ID!): Classroom
+}

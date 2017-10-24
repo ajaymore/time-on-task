@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1033423907094",
+    "project_id": "merida-179706"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1033423907094:android:c62d52bbc290d698",
+        "android_client_info": {
+          "package_name": "com.mobileclient"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1033423907094-l3p9l9gho09p8vqkgfteletckpspotrm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mobileclient",
+            "certificate_hash": "0ab6deaf7c5f152846b316e1b1c430b1608187a5"
+          }
+        },
+        {
+          "client_id": "1033423907094-0pmlhtrcmau5e0rlkiiunuv7soebd15j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDYBGGIQN4JAAsMfsbC2PL5N-JYRfXtBE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

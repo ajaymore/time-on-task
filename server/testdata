@@ -1,0 +1,57 @@
+{
+    "user": {
+        "id": "59e9f24481c3db017c199fb3",
+        "email": "britney.stroman@nickolas.net",
+        "groups": [],
+        "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU5ZTlmMjQ0ODFjM2RiMDE3YzE5OWZiMyIsImVtYWlsIjoiYnJpdG5leS5zdHJvbWFuQG5pY2tvbGFzLm5ldCIsImdyb3VwcyI6W10sImlhdCI6MTUwODUwNDEzMn0.LoNIalTgxenAIDoMDRTHjy-gk8rE-0uSz7sJCz4NBIo",
+        "refreshToken": "3a5c39dd76ba4abcd89bd8ec426ce99d38e57dad4a026d9c8fc86dd2acf1ce9757189c3efbfc9184"
+    }
+}
+
+{
+    "user": {
+        "id": "59e9f26081c3db017c199fb5",
+        "email": "toy_sandy@hotmail.com",
+        "groups": [],
+        "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU5ZTlmMjYwODFjM2RiMDE3YzE5OWZiNSIsImVtYWlsIjoidG95X3NhbmR5QGhvdG1haWwuY29tIiwiZ3JvdXBzIjpbXSwiaWF0IjoxNTA4NTA0MTYwfQ.l0_F_aW8PYfU0IVvP-fFLLUt2gQpWaV6rfBTZ8zZD8A",
+        "refreshToken": "09c90d7e5f8feabfa35957e44052bb21197179714cb6180b29f3f3b589c2e99779bab5701d71d833"
+    }
+}
+
+{
+    "user": {
+        "id": "59e9f26881c3db017c199fb7",
+        "email": "josefina_ritchie@muller.me",
+        "groups": [],
+        "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU5ZTlmMjY4ODFjM2RiMDE3YzE5OWZiNyIsImVtYWlsIjoiam9zZWZpbmFfcml0Y2hpZUBtdWxsZXIubWUiLCJncm91cHMiOltdLCJpYXQiOjE1MDg1MDQxNjh9.cP0LDLB5vrncMwJ1nyQd4S5RjJME7XMeFZ9F2cDCTxk",
+        "refreshToken": "fb9058b0548d99582204d65fa4d3f249f9979c003771729dff0268c37ca8b9910635bd3efa0f4735"
+    }
+}
+
+{
+    "user": {
+        "id": "59e9f26d81c3db017c199fb9",
+        "email": "makenzie.kautzer@hotmail.com",
+        "groups": [],
+        "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU5ZTlmMjZkODFjM2RiMDE3YzE5OWZiOSIsImVtYWlsIjoibWFrZW56aWUua2F1dHplckBob3RtYWlsLmNvbSIsImdyb3VwcyI6W10sImlhdCI6MTUwODUwNDE3M30.6B-oxOvcU8WzPkRqfKBRBX4KMfGZTjOU-46up4aqbwM",
+        "refreshToken": "b99382b40e9d326dc2cbf14ebcb606c58d4c5d64a745153cdce986218906129b552ea0b9abecc195"
+    }
+}
+
+{
+    "user": {
+        "id": "59e9f27281c3db017c199fbb",
+        "email": "arvilla.morissette@smitham.co.uk",
+        "groups": [],
+        "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU5ZTlmMjcyODFjM2RiMDE3YzE5OWZiYiIsImVtYWlsIjoiYXJ2aWxsYS5tb3Jpc3NldHRlQHNtaXRoYW0uY28udWsiLCJncm91cHMiOltdLCJpYXQiOjE1MDg1MDQxNzh9.hSZrpJX3CxJsWNFcXEULzHF4M1cht0RE6lXtNems230",
+        "refreshToken": "8fa0cd12d9c2ec30adcf49980dc84a85304e30291a45d182324b00ecd12d8fbbe34862bea297cf32"
+    }
+}
+
+
+########## Schools
+59e9f2f581c3db017c199fbd
+59e9f2fc81c3db017c199fbe
+59e9f31e81c3db017c199fbf
+59e9f33f81c3db017c199fc0
+

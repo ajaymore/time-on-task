@@ -1,0 +1,68 @@
+scalar DateTime
+
+enum Collboration {
+  SHARED
+  CONTRIBUTING
+}
+
+type Group {
+  groupName: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  users: [User]!
+}
+
+type Classroom {
+  id: ID! @isUnique
+  observations: [Observation!]!
+  school: School
+  subject: String!
+  teacher: String!
+  totalStudents: Int!
+  type: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  grade: String!
+}
+
+type Observation {
+  classroom: Classroom
+  endtime: DateTime!
+  id: ID! @isUnique
+  starttime: DateTime!
+  readings: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type School {
+  address: String!
+  classrooms: [Classroom!]!
+  id: ID! @isUnique
+  name: String!
+  town: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  owner: User!
+  sharedWith: [User]!
+  contributors: [User]!
+}
+
+type User {
+  createdAt: DateTime!
+  email: String! @isUnique
+  id: ID! @isUnique
+  userName: String!
+  blocked: Boolean!
+  updatedAt: DateTime!
+  sharedSchools: [School]!
+  contributions: [School]!
+  ownership: [School]!
+}
+
+type Message {
+  id: Int! # unique id for message
+  from: User! # user who sent the message
+  text: String! # message text
+  createdAt: DateTime! # when message was created
+}
