@@ -1,0 +1,34 @@
+input SchoolInput {
+  address: String!
+  name: String!
+  town: String!
+}
+
+input ClassroomInput {
+  type: String!
+  grade: String!
+  totalStudents: Int!
+  school: ID!
+  subject: String!
+  teacher: String!
+}
+
+input EditClassroomInput {
+  type: String!
+  grade: Int!
+  totalStudents: Int!
+  subject: String!
+  teacher: String!
+}
+
+input EditSchoolInput {
+  address: String!
+  town: String!
+  name: String!
+}
+
+input ObservationInput {
+  endtime: DateTime!
+  starttime: DateTime!
+  readings: String!
+}

@@ -3,9 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node app.js",
+    "start": "node dist/app.js",
     "dev": "nodemon app.js --exec babel-node -e js",
-    "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log,./yarn-error.log,./public --copy-files && echo \"copying public folder\" && cp -Rv public/. dist/public/",
+    "build":
+      "rimraf dist/ && babel ./ --out-dir dist/ --ignore __tests__,README.md,./testdata,./testcode.js,./node_modules,./.babelrc,./package.json,./npm-debug.log,./yarn-error.log,./public --copy-files && echo \"copying public folder\" && cp -Rv public/. dist/public/ && cp .env dist/",
     "test": "jest"
   },
   "dependencies": {
@@ -49,6 +50,7 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.0.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "casual": "^1.5.17",

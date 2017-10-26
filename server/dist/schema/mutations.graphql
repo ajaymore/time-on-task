@@ -1,0 +1,21 @@
+type Mutation {
+  # createUser(input: UserInput!): User
+  createSchool(input: SchoolInput!): School
+  createClassroom(input: ClassroomInput!): Classroom
+  addCollborator(
+    schoolId: ID!
+    userId: ID!
+    collaborationType: Collboration!
+  ): School
+  removeCollboration(
+    schoolId: ID!
+    userId: ID!
+    collaborationType: Collboration!
+  ): School
+  deleteSchool(schoolId: ID!): String
+  editClassroom(input: EditClassroomInput!, classroomId: ID!): Classroom
+  editSchool(input: EditSchoolInput!, schoolId: ID!): School
+  deleteClassroom(classroomId: ID!): String
+  addObservation(input: ObservationInput!, classroomId: ID!): Observation
+  removeObservation(observationId: ID!): String!
+}
