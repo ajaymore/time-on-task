@@ -2,15 +2,21 @@ import React from 'react';
 import {
   Text,
   View,
-  Button,
   TextInput,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  ScrollView
 } from 'react-native';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { getSchool } from './ClassList';
 import { Formik } from 'formik';
 import Yup from 'yup';
+import {
+  FormLabel,
+  FormInput,
+  FormValidationMessage,
+  Button
+} from 'react-native-elements';
 
 class AddClass extends React.Component {
   static navigationOptions = ({ navigation }) => ({
@@ -25,7 +31,7 @@ class AddClass extends React.Component {
           input: {
             type,
             grade,
-            totalStudents,
+            totalStudents: parseInt(totalStudents, 10),
             subject,
             teacher,
             school: schoolId
@@ -48,16 +54,12 @@ class AddClass extends React.Component {
 
   render() {
     return (
-      <KeyboardAvoidingView
-        style={{ flex: 1 }}
-        behavior={'padding'}
-        keyboardVerticalOffset={65}
-      >
+      <View style={{ flex: 1 }}>
         <Formik
           initialValues={{
             type: '',
             grade: '',
-            totalStudents: '0',
+            totalStudents: '',
             subject: '',
             teacher: ''
           }}
@@ -105,52 +107,70 @@ class AddClass extends React.Component {
             isSubmitting,
             setFieldValue
           }) => (
-            <View>
-              <TextInput
+            <ScrollView style={{ flex: 1 }} keyboardShouldPersistTaps="always">
+              <FormLabel>Subject</FormLabel>
+              <FormInput
                 onChangeText={text => setFieldValue('subject', text)}
                 value={values.subject}
-                placeholder="subject"
+                blurOnSubmit={false}
               />
               {touched.subject &&
-                errors.subject && <Text>{errors.subject}</Text>}
-              <TextInput
+                errors.subject && (
+                  <FormValidationMessage>
+                    {errors.subject}
+                  </FormValidationMessage>
+                )}
+              <FormLabel>Teacher</FormLabel>
+              <FormInput
                 onChangeText={text => setFieldValue('teacher', text)}
                 value={values.teacher}
-                placeholder="teacher"
               />
               {touched.teacher &&
-                errors.teacher && <Text>{errors.teacher}</Text>}
-              <TextInput
+                errors.teacher && (
+                  <FormValidationMessage>
+                    {errors.teacher}
+                  </FormValidationMessage>
+                )}
+              <FormLabel>Type of classroom (T/NT)</FormLabel>
+              <FormInput
                 onChangeText={text => setFieldValue('type', text)}
                 value={values.type}
-                placeholder="type"
               />
-              {touched.type && errors.type && <Text>{errors.type}</Text>}
-              <TextInput
+              {touched.type &&
+                errors.type && (
+                  <FormValidationMessage>{errors.type}</FormValidationMessage>
+                )}
+              <FormLabel>Grade</FormLabel>
+              <FormInput
                 onChangeText={text => setFieldValue('grade', text)}
                 value={values.grade}
-                multiline={true}
-                numberOfLines={4}
-                placeholder="grade"
               />
-              {touched.grade && errors.grade && <Text>{errors.grade}</Text>}
-              <TextInput
+              {touched.grade &&
+                errors.grade && (
+                  <FormValidationMessage>{errors.grade}</FormValidationMessage>
+                )}
+              <FormLabel>Total students</FormLabel>
+              <FormInput
                 onChangeText={text => setFieldValue('totalStudents', text)}
                 value={values.totalStudents}
-                placeholder="totalStudents"
               />
               {touched.totalStudents &&
-                errors.totalStudents && <Text>{errors.totalStudents}</Text>}
-              <Button
-                onPress={handleSubmit}
-                disabled={isSubmitting}
-                title="Submit"
-              />
-            </View>
+                errors.totalStudents && (
+                  <FormValidationMessage>
+                    {errors.totalStudents}
+                  </FormValidationMessage>
+                )}
+              <View style={{ marginBottom: 30, marginTop: 20 }}>
+                <Button
+                  onPress={handleSubmit}
+                  disabled={isSubmitting}
+                  title="Submit"
+                />
+              </View>
+            </ScrollView>
           )}
         />
-        <View style={{ height: 60 }} />
-      </KeyboardAvoidingView>
+      </View>
     );
   }
 }

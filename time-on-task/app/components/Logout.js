@@ -1,12 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { loggingOut } from '../actions';
-import { Button } from 'react-native';
+import { TouchableOpacity, Image } from 'react-native';
+import { Icon } from 'react-native-elements';
 
 const Logout = ({ loggingOut, accessToken, refreshToken }) => (
-  <Button
-    title="Logout"
-    color="#841584"
+  <Icon
+    style={{ marginRight: 10 }}
+    name="sign-out"
+    type="octicon"
+    color="blue"
+    size={28}
     onPress={loggingOut.bind(this, accessToken, refreshToken)}
   />
 );

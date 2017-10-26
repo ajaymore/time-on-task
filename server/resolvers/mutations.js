@@ -1,9 +1,9 @@
 import { pubsub } from '../socket';
 const MESSAGE_ADDED_TOPIC = 'messageAdded';
-import School from '../models/school';
-import Classroom from '../models/classroom';
-import Observation from '../models/observation';
-import User from '../models/user';
+import School from '../models/school.model';
+import Classroom from '../models/classroom.model';
+import Observation from '../models/observation.model';
+import User from '../models/user.model';
 import { GraphQLError } from 'graphql';
 import moment from 'moment';
 import { AuthenticationRequiredError } from './index';
@@ -213,6 +213,8 @@ export const deleteSchool = async (root, { schoolId }, ctx) => {
 export const deleteClassroom = async (root, { classroomId }, ctx) => {
   if (!ctx.user) throw AuthenticationRequiredError;
 
+  const classRecord = await Classroom.findById(classroomId);
+  const record = await School.findById(classRecord.school);
   if (ctx.user.id !== record.owner.toString()) {
     return new GraphQLError('Only owner can remove a class entry');
   }

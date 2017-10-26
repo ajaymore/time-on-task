@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import moment from 'moment';
 import bCrypt from 'bcrypt';
-import Group from './group';
+import Group from './group.model';
 import { fromMongo, toMongo } from '../utils';
 
 let UserSchema = new mongoose.Schema({

@@ -1,32 +1,42 @@
 import express from 'express';
 import passport from 'passport';
-import User from '../models/user';
-import RefreshToken from '../models/refreshToken';
-import Group from '../models/group';
+import User from '../models/user.model';
+import RefreshToken from '../models/refreshToken.model';
+import Group from '../models/group.model';
 import expressJwt from 'express-jwt';
 import jwt from 'jsonwebtoken';
 import crypto from 'crypto';
 const router = express.Router();
 
 const serializeUserAndGenerateTokens = async (req, res, next) => {
-  const user = await User.findOne({ email: req.user.email }).populate('groups');
-  if (user) {
-    req.user = {
-      id: req.user._id,
-      email: req.user.email,
-      groups: user.groups
-    };
-    let refreshToken = new RefreshToken();
-    refreshToken.refreshToken = crypto.randomBytes(40).toString('hex');
-    refreshToken.uid = req.user.id;
-    user.refreshTokens.push(refreshToken._id);
-    await refreshToken.save();
-    await user.save();
-    req.refreshToken = refreshToken.refreshToken;
-    req.accessToken = jwtTokenGenerator(req.user);
-    next();
-  } else {
-    res.status(400).end({ message: 'User not found!' });
+  try {
+    const user = await User.findOne({ email: req.user.email }).populate(
+      'groups'
+    );
+    if (user) {
+      req.user = {
+        id: req.user._id,
+        email: req.user.email,
+        groups: user.groups
+      };
+
+      let refreshToken = new RefreshToken();
+      refreshToken.refreshToken = crypto.randomBytes(40).toString('hex');
+      refreshToken.uid = req.user.id;
+      user.refreshTokens.push(refreshToken._id);
+
+      await refreshToken.save();
+      await refreshToken.save();
+
+      req.refreshToken = refreshToken.refreshToken;
+      req.accessToken = jwtTokenGenerator(req.user);
+      next();
+    } else {
+      res.status(400).json({ message: 'User not found!' });
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(400).json(err);
   }
 };
 
@@ -83,6 +93,7 @@ router.post(
   }),
   serializeUserAndGenerateTokens,
   (req, res, next) => {
+    console.log('received form request...');
     res.status(200).json({
       user: {
         ...req.user,

@@ -1,8 +1,8 @@
-import UserModel from '../models/user';
+import UserModel from '../models/user.model';
 import assign from 'lodash/assign';
-import SchoolModel from '../models/school';
-import ClassroomModel from '../models/classroom';
-import ObservationModel from '../models/observation';
+import SchoolModel from '../models/school.model';
+import ClassroomModel from '../models/classroom.model';
+import ObservationModel from '../models/observation.model';
 
 const fromMongo = item => {
   return assign(item, { id: item._id.toString() });
@@ -81,5 +81,46 @@ export const Classroom = {
   },
   async school(classroom, args, ctx) {
     return await SchoolModel.findOne({ _id: classroom.school });
+  }
+};
+
+export const Observation = {
+  readings(observation) {
+    let ds = {
+      One: [],
+      Two: [],
+      Three: [],
+      Four: [],
+      'Total -': [],
+      'Total 0-1': [],
+      'Total 2': [],
+      'Total 3-6': []
+    };
+    let values = JSON.parse(observation.readings);
+    values.forEach(val => {
+      const minute = val.minuteValue - 1;
+      const ratings = val.ratings;
+      ratings.forEach(rat => {
+        ds[rat.title][minute] = rat.givenRating === 7 ? '-' : rat.givenRating;
+        if (rat.givenRating === 7) {
+          ds['Total -'][minute] = ds['Total -'][minute]
+            ? ds['Total -'][minute] + 1
+            : 1;
+        } else if (rat.givenRating === 0 || rat.givenRating === 1) {
+          ds['Total 0-1'][minute] = ds['Total 0-1'][minute]
+            ? ds['Total 0-1'][minute] + 1
+            : 1;
+        } else if (rat.givenRating === 2) {
+          ds['Total 2'][minute] = ds['Total 2'][minute]
+            ? ds['Total 2'][minute] + 1
+            : 1;
+        } else if (rat.givenRating >= 3 && rat.givenRating <= 6) {
+          ds['Total 3-6'][minute] = ds['Total 3-6'][minute]
+            ? ds['Total 3-6'][minute] + 1
+            : 1;
+        }
+      });
+    });
+    return JSON.stringify(ds);
   }
 };

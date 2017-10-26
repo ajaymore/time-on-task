@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import moment from 'moment';
-import user from './user';
+import user from './user.model';
 
 let RefreshTokenSchema = new mongoose.Schema({
   refreshToken: {

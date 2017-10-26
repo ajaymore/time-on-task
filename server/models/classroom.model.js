@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import moment from 'moment';
-import School from './school';
+import School from './school.model';
 
 let ClassroomSchema = new mongoose.Schema({
   type: { type: String, required: true },

@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import moment from 'moment';
-import User from './user'
+import User from './user.model';
 
 let SchoolSchema = new mongoose.Schema({
   name: {
@@ -20,26 +20,29 @@ let SchoolSchema = new mongoose.Schema({
 });
 
 SchoolSchema.post('remove', async (doc, next) => {
-    await User.findByIdAndUpdate(doc.owner, {
-      $pullAll: {
-        ownership: [doc._id]
-      }
-    });
+  await User.findByIdAndUpdate(doc.owner, {
+    $pullAll: {
+      ownership: [doc._id]
+    }
+  });
 
   next(null, doc);
 });
 
 SchoolSchema.post('save', async (doc, next) => {
-  await User.findByIdAndUpdate(doc.owner, {
-        $addToSet: {
-          ownership: doc._id
-        }
-      },
-      {
-        safe: true,
-        upsert: true,
-        new: true
-      })
+  await User.findByIdAndUpdate(
+    doc.owner,
+    {
+      $addToSet: {
+        ownership: doc._id
+      }
+    },
+    {
+      safe: true,
+      upsert: true,
+      new: true
+    }
+  );
 
   next(null, doc);
 });

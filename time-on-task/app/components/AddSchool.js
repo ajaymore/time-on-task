@@ -1,14 +1,19 @@
 import React from 'react';
-import { Text, View, Button, TextInput } from 'react-native';
+import { Text, View, TextInput, ScrollView } from 'react-native';
 import { graphql, gql } from 'react-apollo';
 import { userQuery } from './Home';
 import { Formik } from 'formik';
 import Yup from 'yup';
+import {
+  FormLabel,
+  FormInput,
+  FormValidationMessage,
+  Button
+} from 'react-native-elements';
 
 class AddSchool extends React.Component {
   static navigationOptions = {
-    title: 'Add a school entry',
-    headerRight: <Button title="Details" onPress={() => alert('clicked')} />
+    title: 'Add a school entry'
   };
 
   _create = async ({ address, name, town }, cb) => {
@@ -33,7 +38,7 @@ class AddSchool extends React.Component {
 
   render() {
     return (
-      <View>
+      <View style={{ flex: 1 }}>
         <Formik
           initialValues={{
             name: '',
@@ -78,34 +83,47 @@ class AddSchool extends React.Component {
             isSubmitting,
             setFieldValue
           }) => (
-            <View>
-              <TextInput
+            <ScrollView style={{ flex: 1 }} keyboardShouldPersistTaps="always">
+              <FormLabel>School Name</FormLabel>
+              <FormInput
                 onChangeText={text => setFieldValue('name', text)}
                 value={values.name}
-                placeholder="Name"
               />
-              {touched.name && errors.name && <Text>{errors.name}</Text>}
-              <TextInput
+              {touched.name &&
+                errors.name && (
+                  <FormValidationMessage>{errors.name}</FormValidationMessage>
+                )}
+              <FormLabel>Address</FormLabel>
+              <FormInput
                 onChangeText={text => setFieldValue('address', text)}
                 value={values.address}
                 multiline={true}
+                blurOnSubmit={false}
                 numberOfLines={4}
-                placeholder="Address"
               />
               {touched.address &&
-                errors.address && <Text>{errors.address}</Text>}
-              <TextInput
+                errors.address && (
+                  <FormValidationMessage>
+                    {errors.address}
+                  </FormValidationMessage>
+                )}
+              <FormLabel>Town</FormLabel>
+              <FormInput
                 onChangeText={text => setFieldValue('town', text)}
                 value={values.town}
-                placeholder="Town"
               />
-              {touched.town && errors.town && <Text>{errors.town}</Text>}
-              <Button
-                onPress={handleSubmit}
-                disabled={isSubmitting}
-                title="Submit"
-              />
-            </View>
+              {touched.town &&
+                errors.town && (
+                  <FormValidationMessage>{errors.town}</FormValidationMessage>
+                )}
+              <View style={{ marginBottom: 30, marginTop: 20 }}>
+                <Button
+                  onPress={handleSubmit}
+                  disabled={isSubmitting}
+                  title="Submit"
+                />
+              </View>
+            </ScrollView>
           )}
         />
       </View>

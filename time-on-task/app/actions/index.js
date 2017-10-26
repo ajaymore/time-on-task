@@ -20,7 +20,6 @@ export const loginSuccess = (accessToken, refreshToken) => {
 };
 
 export const loggingOut = (accessToken, refreshToken) => {
-  console.log(accessToken, refreshToken);
   return {
     type: ActionTypes.LOGOUT_IN_PROGRESS,
     payload: {
@@ -44,5 +43,48 @@ export const tokenRefreshed = (accessToken, tokenRefreshed) => {
       accessToken,
       tokenRefreshed
     }
+  };
+};
+
+export const searchUser = search => {
+  return {
+    type: ActionTypes.SEARCH_USER,
+    payload: {
+      search
+    }
+  };
+};
+
+export const searchUserSuccess = results => {
+  return {
+    type: ActionTypes.SEARCH_USER_SUCCESS,
+    payload: results
+  };
+};
+
+export const newEntry = (uuid, classId) => {
+  return {
+    type: ActionTypes.NEW_ENTRY,
+    payload: {
+      uuid,
+      classId
+    }
+  };
+};
+
+export const addUnitObservation = (uuid, newUnitObservation) => {
+  return {
+    type: ActionTypes.ADD_UNIT_OBSERVATION,
+    payload: {
+      uuid,
+      newUnitObservation
+    }
+  };
+};
+
+export const observationSynced = uuid => {
+  return {
+    type: ActionTypes.OBSERVATION_SYNCED,
+    payload: uuid
   };
 };

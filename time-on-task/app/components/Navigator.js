@@ -7,6 +7,7 @@ import Observations from './Observations';
 import AddClass from './AddClass';
 import Recorder from './Recorder';
 import AddCollaboration from './AddCollaboration';
+import ToTRecord from './ToTRecord';
 import { Text } from 'react-native';
 
 export default StackNavigator({
@@ -15,6 +16,6 @@ export default StackNavigator({
   AddClass: { screen: AddClass },
   ClassList: { screen: ClassList },
   Observations: { screen: Observations },
-  Recorder: { screen: Recorder },
+  Recorder: { screen: ToTRecord },
   AddCollaboration: { screen: AddCollaboration }
 });

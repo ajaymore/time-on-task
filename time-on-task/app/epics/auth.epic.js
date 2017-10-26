@@ -6,6 +6,7 @@ export const userLogin = action$ => {
   return action$
     .ofType(ActionTypes.LOGIN_IN_PROGRESS)
     .map(action => action.payload.accessToken)
+    .debounceTime(1000)
     .mergeMap(accessToken => {
       return fetch(`${BASE_URL}auth/device-login`, {
         method: 'POST',
@@ -28,7 +29,7 @@ export const userLogin = action$ => {
 export const userLogout = action$ => {
   return action$
     .ofType(ActionTypes.LOGOUT_IN_PROGRESS)
-    .map(action => {
+    .map(async action => {
       return {
         accessToken: action.payload.accessToken,
         refreshToken: action.payload.refreshToken

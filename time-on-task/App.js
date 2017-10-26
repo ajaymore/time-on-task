@@ -12,7 +12,7 @@ import configureStore from './app/configureStore';
 import { tokenRefreshed, loggingOut } from './app/actions';
 import Root from './app/components/Root';
 import { INITIALIZE } from './app/ActionTypes';
-export const BASE_URL = 'http://192.168.1.20:8000/';
+export const BASE_URL = 'http://192.168.1.9:8000/';
 
 const networkInterface = createNetworkInterface({
   uri: `${BASE_URL}graphql`

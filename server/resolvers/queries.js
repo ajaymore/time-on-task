@@ -1,7 +1,7 @@
-import User from '../models/user';
+import User from '../models/user.model';
 import { AuthenticationRequiredError } from './index';
-import School from '../models/school';
-import Classroom from '../models/classroom';
+import School from '../models/school.model';
+import Classroom from '../models/classroom.model';
 
 export const getUser = async (root, args, ctx) => {
   if (!ctx.user) throw AuthenticationRequiredError;

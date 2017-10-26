@@ -1,6 +1,6 @@
 import passport from 'passport';
 import moment from 'moment';
-import User from '../models/user';
+import User from '../models/user.model';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import CustomStrategy from 'passport-custom';
 import fetch from 'node-fetch';
@@ -25,7 +25,7 @@ passport.use(
           newUser.email = profile.emails[0].value;
           // newUser.userName = user.name;
           // newUser.picture = user.picture;
-          newUser.save();
+          await newUser.save();
           done(null, newUser);
         }
       } catch (err) {
@@ -56,7 +56,7 @@ passport.use(
         newUser.email = user.email;
         newUser.userName = user.name;
         newUser.picture = user.picture;
-        newUser.save();
+        await newUser.save();
         done(null, newUser);
       }
     } catch (err) {
@@ -67,12 +67,10 @@ passport.use(
 );
 
 passport.serializeUser((user, done) => {
-  console.log(user);
   done(null, user._id);
 });
 
 passport.deserializeUser(async (id, done) => {
-  console.log('deserialize', id);
   try {
     const user = await User.findById(id).populate('groups', 'id groupName');
     if (user) {
