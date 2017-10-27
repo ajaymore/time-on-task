@@ -54,3 +54,5 @@ buck-out/
 
 android/app/google-services.json
 google-services.json
+prod.google-services.json
+dev.google-services.json

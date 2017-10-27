@@ -64,6 +64,10 @@ class ToTRecord extends Component {
     }, 1000);
   };
 
+  componentWillUnmount() {
+    clearInterval(this.timerId);
+  }
+
   stopRecording = () => {
     this.setState({
       recordingOn: false,

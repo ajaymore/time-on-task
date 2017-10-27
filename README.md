@@ -87,6 +87,17 @@ keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -sto
 - to create SHA-1 follow the below steps
     - 
 
+- https://developers.google.com/identity/sign-in/android/start-integrating
+- create two configuration files for development and production
+- Use `keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android` to get debug file SHA-1
+- Use `keytool -exportcert -list -v -alias <alias name> -keystore my-release-key.keystore` to get SHA-1 for production config
+- update the versionCode in android/app/build.gradle before each deploy and then build the application
+- follow the steps at https://facebook.github.io/react-native/docs/signed-apk-android.html to generate build
+- create passwords using `openssl rand -base64 14` and `pwgen -s 25`
+- download an icon - use https://romannurik.github.io/AndroidAssetStudio/icons-launcher.html to generate launcher icons and place them in res folder
+- take two app screenshots on phone
+- create quick privacy policy on github
+
 ```
     **Note:** When you ready to deploy to production don't forget to
     add your new url to *Authorized Javascript origins* and *Authorized redirect URI*,
