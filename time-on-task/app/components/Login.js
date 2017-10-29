@@ -8,7 +8,11 @@ import { View, Text } from 'react-native';
 
 class Login extends Component {
   componentDidMount() {
-    this.props.client.resetStore();
+    try {
+      this.props.client.resetStore();
+    } catch (err) {
+      console.log('reset error', JSON.stringify(err));
+    }
     this._setupGoogleSignin();
   }
 
@@ -20,7 +24,9 @@ class Login extends Component {
       });
       GoogleSignin.currentUserAsync()
         .then(async user => {
-          await GoogleSignin.signOut();
+          if (user) {
+            await GoogleSignin.signOut();
+          }
         })
         .done();
     } catch (err) {

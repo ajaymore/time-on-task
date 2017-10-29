@@ -26,7 +26,7 @@
 ## Screens
 
 - [X] User Login
-- [ ] School List
+- [X] School List
     - [X] Can View List of schools (owned, shared, contributing)
     - [X] Has a add collaborator icon for owned schools
     - [X] Clicking on list item should lead to class list
@@ -36,16 +36,16 @@
 - [X] Add Collaboration
     - [X] Can search a user by email Id
     - [X] Choose between Shared and Contributor (default Shared)
-- [ ] Class list
+- [X] Class list
     - [X] Display list of all associated classes with the school
     - [X] Show Add Class button if the school is owned
     - [X] Show brief school information
     - [X] Clicking list item should dispaly the observation list
-    - [ ] Edit link leads to edit school screen
-    - [ ] Delete link warns and deletes the school on prompt
-- [ ] Observation list
+    - [X] Edit link leads to edit school screen
+    - [X] Delete link warns and deletes the school on prompt
+- [X] Observation list
     - [X] Show add observation button if either owner or contributor
-    - [ ] displays all the observations collected so far
+    - [X] displays all the observations collected so far
 - [X] Add School
     - [X] Form to add a new school
 - [ ] Edit School
@@ -54,8 +54,8 @@
     - [X] Form to add a new class
 - [ ] Edit Class
     - [ ] Form to edit a new class
-- [ ] Observation Recorder inteface
-    - [ ] Virtual groups inteface to record
+- [X] Observation Recorder inteface
+    - [X] Virtual groups inteface to record
 
 
 ## Development Setup
@@ -77,20 +77,29 @@
     - Click on **Create Client**
 
 - Follow below steps to set google authentication in the app
-- visit https://console.cloud.google.com/ > choose your project
-- android-developer-key
-keytool -exportcert -keystore path-to-debug-or-production-keystore -list -v
+
+- Follow steps at https://github.com/devfd/react-native-google-signin/blob/master/android-guide.md
+
+### google-services.json
+
+- Development
+
+```
 keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android
-
-- Follow steps at https://github.com/devfd/react-native-google-signin/blob/master/android-guide.md to get google-services.json for use in android project
+```
+- to get google-services.json for use in android project
+- vist https://developers.google.com/identity/sign-in/android/start-integrating
 - choose project name, type package name (in.ajaymore.tot)
-- to create SHA-1 follow the below steps
-    - 
 
-- https://developers.google.com/identity/sign-in/android/start-integrating
+- Production
+- Create new Android project, opt for Google signing of app, get the SHA-1 code
+- vist https://developers.google.com/identity/sign-in/android/start-integrating
+- choose project name, type package name (in.ajaymore.tot)
+
 - create two configuration files for development and production
-- Use `keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android` to get debug file SHA-1
-- Use `keytool -exportcert -list -v -alias <alias name> -keystore my-release-key.keystore` to get SHA-1 for production config
+- put the google-services.json for development at app/src/debug and production google-services.json at app/ and app/release
+
+
 - update the versionCode in android/app/build.gradle before each deploy and then build the application
 - follow the steps at https://facebook.github.io/react-native/docs/signed-apk-android.html to generate build
 - create passwords using `openssl rand -base64 14` and `pwgen -s 25`
@@ -113,5 +122,9 @@ keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -sto
 - ctrl + shift + f => change all the instance of old package name
 
 
-
 ## Deployment preperation
+
+
+## Username password login
+- Register screen > onsubmit > send verification email > set emailVerified = false
+- on login if emailVerify = false show pending screen
