@@ -1,0 +1,3094 @@
+enum _ModelMutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+# Meta information about the query.
+type _QueryMeta {
+  count: Int!
+}
+
+type AddToAssetOnStationPayload {
+  assetsAsset: Asset
+  stationStation: Station
+}
+
+type AddToAssetOnUserPayload {
+  assetsAsset: Asset
+  usersUser: User
+}
+
+type AddToCompanyOnUserPayload {
+  companyCompany: Company
+  usersUser: User
+}
+
+type AddToMessageOnAssetPayload {
+  messagesMessage: Message
+  assetAsset: Asset
+}
+
+type AddToUserOnStationPayload {
+  usersUser: User
+  stationsStation: Station
+}
+
+# Details of uploaded asset
+type Asset implements Node {
+  assetInfo: String!
+  assetUrl: String!
+  id: ID!
+  messages(filter: MessageFilter, orderBy: MessageOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [Message!]
+  station(filter: StationFilter): Station
+  thumbnailUrl: String!
+  type: String!
+  users(filter: UserFilter, orderBy: UserOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
+
+  # Meta information about the query.
+  _messagesMeta(filter: MessageFilter, orderBy: MessageOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
+
+  # Meta information about the query.
+  _usersMeta(filter: UserFilter, orderBy: UserOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
+}
+
+input AssetFilter {
+  # Logical AND on all given filters.
+  AND: [AssetFilter!]
+
+  # Logical OR on all given filters.
+  OR: [AssetFilter!]
+  assetInfo: String
+
+  # All values that are not equal to given value.
+  assetInfo_not: String
+
+  # All values that are contained in given list.
+  assetInfo_in: [String!]
+
+  # All values that are not contained in given list.
+  assetInfo_not_in: [String!]
+
+  # All values less than the given value.
+  assetInfo_lt: String
+
+  # All values less than or equal the given value.
+  assetInfo_lte: String
+
+  # All values greater than the given value.
+  assetInfo_gt: String
+
+  # All values greater than or equal the given value.
+  assetInfo_gte: String
+
+  # All values containing the given string.
+  assetInfo_contains: String
+
+  # All values not containing the given string.
+  assetInfo_not_contains: String
+
+  # All values starting with the given string.
+  assetInfo_starts_with: String
+
+  # All values not starting with the given string.
+  assetInfo_not_starts_with: String
+
+  # All values ending with the given string.
+  assetInfo_ends_with: String
+
+  # All values not ending with the given string.
+  assetInfo_not_ends_with: String
+  assetUrl: String
+
+  # All values that are not equal to given value.
+  assetUrl_not: String
+
+  # All values that are contained in given list.
+  assetUrl_in: [String!]
+
+  # All values that are not contained in given list.
+  assetUrl_not_in: [String!]
+
+  # All values less than the given value.
+  assetUrl_lt: String
+
+  # All values less than or equal the given value.
+  assetUrl_lte: String
+
+  # All values greater than the given value.
+  assetUrl_gt: String
+
+  # All values greater than or equal the given value.
+  assetUrl_gte: String
+
+  # All values containing the given string.
+  assetUrl_contains: String
+
+  # All values not containing the given string.
+  assetUrl_not_contains: String
+
+  # All values starting with the given string.
+  assetUrl_starts_with: String
+
+  # All values not starting with the given string.
+  assetUrl_not_starts_with: String
+
+  # All values ending with the given string.
+  assetUrl_ends_with: String
+
+  # All values not ending with the given string.
+  assetUrl_not_ends_with: String
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  thumbnailUrl: String
+
+  # All values that are not equal to given value.
+  thumbnailUrl_not: String
+
+  # All values that are contained in given list.
+  thumbnailUrl_in: [String!]
+
+  # All values that are not contained in given list.
+  thumbnailUrl_not_in: [String!]
+
+  # All values less than the given value.
+  thumbnailUrl_lt: String
+
+  # All values less than or equal the given value.
+  thumbnailUrl_lte: String
+
+  # All values greater than the given value.
+  thumbnailUrl_gt: String
+
+  # All values greater than or equal the given value.
+  thumbnailUrl_gte: String
+
+  # All values containing the given string.
+  thumbnailUrl_contains: String
+
+  # All values not containing the given string.
+  thumbnailUrl_not_contains: String
+
+  # All values starting with the given string.
+  thumbnailUrl_starts_with: String
+
+  # All values not starting with the given string.
+  thumbnailUrl_not_starts_with: String
+
+  # All values ending with the given string.
+  thumbnailUrl_ends_with: String
+
+  # All values not ending with the given string.
+  thumbnailUrl_not_ends_with: String
+  type: String
+
+  # All values that are not equal to given value.
+  type_not: String
+
+  # All values that are contained in given list.
+  type_in: [String!]
+
+  # All values that are not contained in given list.
+  type_not_in: [String!]
+
+  # All values less than the given value.
+  type_lt: String
+
+  # All values less than or equal the given value.
+  type_lte: String
+
+  # All values greater than the given value.
+  type_gt: String
+
+  # All values greater than or equal the given value.
+  type_gte: String
+
+  # All values containing the given string.
+  type_contains: String
+
+  # All values not containing the given string.
+  type_not_contains: String
+
+  # All values starting with the given string.
+  type_starts_with: String
+
+  # All values not starting with the given string.
+  type_not_starts_with: String
+
+  # All values ending with the given string.
+  type_ends_with: String
+
+  # All values not ending with the given string.
+  type_not_ends_with: String
+  messages_every: MessageFilter
+  messages_some: MessageFilter
+  messages_none: MessageFilter
+  station: StationFilter
+  users_every: UserFilter
+  users_some: UserFilter
+  users_none: UserFilter
+}
+
+input AssetmessagesMessage {
+  text: String!
+}
+
+enum AssetOrderBy {
+  assetInfo_ASC
+  assetInfo_DESC
+  assetUrl_ASC
+  assetUrl_DESC
+  id_ASC
+  id_DESC
+  thumbnailUrl_ASC
+  thumbnailUrl_DESC
+  type_ASC
+  type_DESC
+}
+
+type AssetPreviousValues {
+  assetInfo: String!
+  assetUrl: String!
+  id: ID!
+  thumbnailUrl: String!
+  type: String!
+}
+
+input AssetstationStation {
+  stationInfo: String!
+  stationName: String!
+  assetsIds: [ID!]
+  assets: [StationassetsAsset!]
+  usersIds: [ID!]
+}
+
+input AssetSubscriptionFilter {
+  # Logical AND on all given filters.
+  AND: [AssetSubscriptionFilter!]
+
+  # Logical OR on all given filters.
+  OR: [AssetSubscriptionFilter!]
+
+  # The subscription event gets dispatched when it's listed in mutation_in
+  mutation_in: [_ModelMutationType!]
+
+  # The subscription event gets only dispatched when one of the updated fields names is included in this list
+  updatedFields_contains: String
+
+  # The subscription event gets only dispatched when all of the field names included in this list have been updated
+  updatedFields_contains_every: [String!]
+
+  # The subscription event gets only dispatched when some of the field names included in this list have been updated
+  updatedFields_contains_some: [String!]
+  node: AssetSubscriptionFilterNode
+}
+
+input AssetSubscriptionFilterNode {
+  assetInfo: String
+
+  # All values that are not equal to given value.
+  assetInfo_not: String
+
+  # All values that are contained in given list.
+  assetInfo_in: [String!]
+
+  # All values that are not contained in given list.
+  assetInfo_not_in: [String!]
+
+  # All values less than the given value.
+  assetInfo_lt: String
+
+  # All values less than or equal the given value.
+  assetInfo_lte: String
+
+  # All values greater than the given value.
+  assetInfo_gt: String
+
+  # All values greater than or equal the given value.
+  assetInfo_gte: String
+
+  # All values containing the given string.
+  assetInfo_contains: String
+
+  # All values not containing the given string.
+  assetInfo_not_contains: String
+
+  # All values starting with the given string.
+  assetInfo_starts_with: String
+
+  # All values not starting with the given string.
+  assetInfo_not_starts_with: String
+
+  # All values ending with the given string.
+  assetInfo_ends_with: String
+
+  # All values not ending with the given string.
+  assetInfo_not_ends_with: String
+  assetUrl: String
+
+  # All values that are not equal to given value.
+  assetUrl_not: String
+
+  # All values that are contained in given list.
+  assetUrl_in: [String!]
+
+  # All values that are not contained in given list.
+  assetUrl_not_in: [String!]
+
+  # All values less than the given value.
+  assetUrl_lt: String
+
+  # All values less than or equal the given value.
+  assetUrl_lte: String
+
+  # All values greater than the given value.
+  assetUrl_gt: String
+
+  # All values greater than or equal the given value.
+  assetUrl_gte: String
+
+  # All values containing the given string.
+  assetUrl_contains: String
+
+  # All values not containing the given string.
+  assetUrl_not_contains: String
+
+  # All values starting with the given string.
+  assetUrl_starts_with: String
+
+  # All values not starting with the given string.
+  assetUrl_not_starts_with: String
+
+  # All values ending with the given string.
+  assetUrl_ends_with: String
+
+  # All values not ending with the given string.
+  assetUrl_not_ends_with: String
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  thumbnailUrl: String
+
+  # All values that are not equal to given value.
+  thumbnailUrl_not: String
+
+  # All values that are contained in given list.
+  thumbnailUrl_in: [String!]
+
+  # All values that are not contained in given list.
+  thumbnailUrl_not_in: [String!]
+
+  # All values less than the given value.
+  thumbnailUrl_lt: String
+
+  # All values less than or equal the given value.
+  thumbnailUrl_lte: String
+
+  # All values greater than the given value.
+  thumbnailUrl_gt: String
+
+  # All values greater than or equal the given value.
+  thumbnailUrl_gte: String
+
+  # All values containing the given string.
+  thumbnailUrl_contains: String
+
+  # All values not containing the given string.
+  thumbnailUrl_not_contains: String
+
+  # All values starting with the given string.
+  thumbnailUrl_starts_with: String
+
+  # All values not starting with the given string.
+  thumbnailUrl_not_starts_with: String
+
+  # All values ending with the given string.
+  thumbnailUrl_ends_with: String
+
+  # All values not ending with the given string.
+  thumbnailUrl_not_ends_with: String
+  type: String
+
+  # All values that are not equal to given value.
+  type_not: String
+
+  # All values that are contained in given list.
+  type_in: [String!]
+
+  # All values that are not contained in given list.
+  type_not_in: [String!]
+
+  # All values less than the given value.
+  type_lt: String
+
+  # All values less than or equal the given value.
+  type_lte: String
+
+  # All values greater than the given value.
+  type_gt: String
+
+  # All values greater than or equal the given value.
+  type_gte: String
+
+  # All values containing the given string.
+  type_contains: String
+
+  # All values not containing the given string.
+  type_not_contains: String
+
+  # All values starting with the given string.
+  type_starts_with: String
+
+  # All values not starting with the given string.
+  type_not_starts_with: String
+
+  # All values ending with the given string.
+  type_ends_with: String
+
+  # All values not ending with the given string.
+  type_not_ends_with: String
+  messages_every: MessageFilter
+  messages_some: MessageFilter
+  messages_none: MessageFilter
+  station: StationFilter
+  users_every: UserFilter
+  users_some: UserFilter
+  users_none: UserFilter
+}
+
+type AssetSubscriptionPayload {
+  mutation: _ModelMutationType!
+  node: Asset
+  updatedFields: [String!]
+  previousValues: AssetPreviousValues
+}
+
+input AUTH_PROVIDER_EMAIL {
+  email: String!
+  password: String!
+}
+
+input AuthProviderSignupData {
+  email: AUTH_PROVIDER_EMAIL
+}
+
+# Business employees
+type Company implements Node {
+  companyInfo: String!
+  companyName: String!
+  id: ID!
+  project(filter: ProjectFilter): Project
+  users(filter: UserFilter, orderBy: UserOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
+
+  # Meta information about the query.
+  _usersMeta(filter: UserFilter, orderBy: UserOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
+}
+
+input CompanyFilter {
+  # Logical AND on all given filters.
+  AND: [CompanyFilter!]
+
+  # Logical OR on all given filters.
+  OR: [CompanyFilter!]
+  companyInfo: String
+
+  # All values that are not equal to given value.
+  companyInfo_not: String
+
+  # All values that are contained in given list.
+  companyInfo_in: [String!]
+
+  # All values that are not contained in given list.
+  companyInfo_not_in: [String!]
+
+  # All values less than the given value.
+  companyInfo_lt: String
+
+  # All values less than or equal the given value.
+  companyInfo_lte: String
+
+  # All values greater than the given value.
+  companyInfo_gt: String
+
+  # All values greater than or equal the given value.
+  companyInfo_gte: String
+
+  # All values containing the given string.
+  companyInfo_contains: String
+
+  # All values not containing the given string.
+  companyInfo_not_contains: String
+
+  # All values starting with the given string.
+  companyInfo_starts_with: String
+
+  # All values not starting with the given string.
+  companyInfo_not_starts_with: String
+
+  # All values ending with the given string.
+  companyInfo_ends_with: String
+
+  # All values not ending with the given string.
+  companyInfo_not_ends_with: String
+  companyName: String
+
+  # All values that are not equal to given value.
+  companyName_not: String
+
+  # All values that are contained in given list.
+  companyName_in: [String!]
+
+  # All values that are not contained in given list.
+  companyName_not_in: [String!]
+
+  # All values less than the given value.
+  companyName_lt: String
+
+  # All values less than or equal the given value.
+  companyName_lte: String
+
+  # All values greater than the given value.
+  companyName_gt: String
+
+  # All values greater than or equal the given value.
+  companyName_gte: String
+
+  # All values containing the given string.
+  companyName_contains: String
+
+  # All values not containing the given string.
+  companyName_not_contains: String
+
+  # All values starting with the given string.
+  companyName_starts_with: String
+
+  # All values not starting with the given string.
+  companyName_not_starts_with: String
+
+  # All values ending with the given string.
+  companyName_ends_with: String
+
+  # All values not ending with the given string.
+  companyName_not_ends_with: String
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  project: ProjectFilter
+  users_every: UserFilter
+  users_some: UserFilter
+  users_none: UserFilter
+}
+
+enum CompanyOrderBy {
+  companyInfo_ASC
+  companyInfo_DESC
+  companyName_ASC
+  companyName_DESC
+  id_ASC
+  id_DESC
+}
+
+type CompanyPreviousValues {
+  companyInfo: String!
+  companyName: String!
+  id: ID!
+}
+
+input CompanyprojectProject {
+  projectInfo: String!
+  projectName: String!
+}
+
+input CompanySubscriptionFilter {
+  # Logical AND on all given filters.
+  AND: [CompanySubscriptionFilter!]
+
+  # Logical OR on all given filters.
+  OR: [CompanySubscriptionFilter!]
+
+  # The subscription event gets dispatched when it's listed in mutation_in
+  mutation_in: [_ModelMutationType!]
+
+  # The subscription event gets only dispatched when one of the updated fields names is included in this list
+  updatedFields_contains: String
+
+  # The subscription event gets only dispatched when all of the field names included in this list have been updated
+  updatedFields_contains_every: [String!]
+
+  # The subscription event gets only dispatched when some of the field names included in this list have been updated
+  updatedFields_contains_some: [String!]
+  node: CompanySubscriptionFilterNode
+}
+
+input CompanySubscriptionFilterNode {
+  companyInfo: String
+
+  # All values that are not equal to given value.
+  companyInfo_not: String
+
+  # All values that are contained in given list.
+  companyInfo_in: [String!]
+
+  # All values that are not contained in given list.
+  companyInfo_not_in: [String!]
+
+  # All values less than the given value.
+  companyInfo_lt: String
+
+  # All values less than or equal the given value.
+  companyInfo_lte: String
+
+  # All values greater than the given value.
+  companyInfo_gt: String
+
+  # All values greater than or equal the given value.
+  companyInfo_gte: String
+
+  # All values containing the given string.
+  companyInfo_contains: String
+
+  # All values not containing the given string.
+  companyInfo_not_contains: String
+
+  # All values starting with the given string.
+  companyInfo_starts_with: String
+
+  # All values not starting with the given string.
+  companyInfo_not_starts_with: String
+
+  # All values ending with the given string.
+  companyInfo_ends_with: String
+
+  # All values not ending with the given string.
+  companyInfo_not_ends_with: String
+  companyName: String
+
+  # All values that are not equal to given value.
+  companyName_not: String
+
+  # All values that are contained in given list.
+  companyName_in: [String!]
+
+  # All values that are not contained in given list.
+  companyName_not_in: [String!]
+
+  # All values less than the given value.
+  companyName_lt: String
+
+  # All values less than or equal the given value.
+  companyName_lte: String
+
+  # All values greater than the given value.
+  companyName_gt: String
+
+  # All values greater than or equal the given value.
+  companyName_gte: String
+
+  # All values containing the given string.
+  companyName_contains: String
+
+  # All values not containing the given string.
+  companyName_not_contains: String
+
+  # All values starting with the given string.
+  companyName_starts_with: String
+
+  # All values not starting with the given string.
+  companyName_not_starts_with: String
+
+  # All values ending with the given string.
+  companyName_ends_with: String
+
+  # All values not ending with the given string.
+  companyName_not_ends_with: String
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  project: ProjectFilter
+  users_every: UserFilter
+  users_some: UserFilter
+  users_none: UserFilter
+}
+
+type CompanySubscriptionPayload {
+  mutation: _ModelMutationType!
+  node: Company
+  updatedFields: [String!]
+  previousValues: CompanyPreviousValues
+}
+
+input CreateAsset {
+  assetInfo: String!
+  assetUrl: String!
+  thumbnailUrl: String!
+  type: String!
+  stationId: ID
+  station: AssetstationStation
+  messagesIds: [ID!]
+  messages: [AssetmessagesMessage!]
+  usersIds: [ID!]
+}
+
+input CreateCompany {
+  companyInfo: String!
+  companyName: String!
+  projectId: ID
+  project: CompanyprojectProject
+  usersIds: [ID!]
+}
+
+input CreateFile {
+  name: String!
+}
+
+input CreateMessage {
+  text: String!
+  assetId: ID
+  asset: MessageassetAsset
+}
+
+input CreateProject {
+  projectInfo: String!
+  projectName: String!
+  companyId: ID
+  company: ProjectcompanyCompany
+}
+
+input CreateStation {
+  stationInfo: String!
+  stationName: String!
+  assetsIds: [ID!]
+  assets: [StationassetsAsset!]
+  usersIds: [ID!]
+}
+
+input CreateUser {
+  emailVerified: Boolean
+  userType: USER_TYPE!
+  companyId: ID
+  company: UsercompanyCompany
+  assetsIds: [ID!]
+  assets: [UserassetsAsset!]
+  stationsIds: [ID!]
+  stations: [UserstationsStation!]
+}
+
+scalar DateTime
+
+type File implements Node {
+  contentType: String!
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  secret: String!
+  size: Int!
+  updatedAt: DateTime!
+  url: String!
+}
+
+input FileFilter {
+  # Logical AND on all given filters.
+  AND: [FileFilter!]
+
+  # Logical OR on all given filters.
+  OR: [FileFilter!]
+  contentType: String
+
+  # All values that are not equal to given value.
+  contentType_not: String
+
+  # All values that are contained in given list.
+  contentType_in: [String!]
+
+  # All values that are not contained in given list.
+  contentType_not_in: [String!]
+
+  # All values less than the given value.
+  contentType_lt: String
+
+  # All values less than or equal the given value.
+  contentType_lte: String
+
+  # All values greater than the given value.
+  contentType_gt: String
+
+  # All values greater than or equal the given value.
+  contentType_gte: String
+
+  # All values containing the given string.
+  contentType_contains: String
+
+  # All values not containing the given string.
+  contentType_not_contains: String
+
+  # All values starting with the given string.
+  contentType_starts_with: String
+
+  # All values not starting with the given string.
+  contentType_not_starts_with: String
+
+  # All values ending with the given string.
+  contentType_ends_with: String
+
+  # All values not ending with the given string.
+  contentType_not_ends_with: String
+  createdAt: DateTime
+
+  # All values that are not equal to given value.
+  createdAt_not: DateTime
+
+  # All values that are contained in given list.
+  createdAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  createdAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  createdAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  createdAt_lte: DateTime
+
+  # All values greater than the given value.
+  createdAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  createdAt_gte: DateTime
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  name: String
+
+  # All values that are not equal to given value.
+  name_not: String
+
+  # All values that are contained in given list.
+  name_in: [String!]
+
+  # All values that are not contained in given list.
+  name_not_in: [String!]
+
+  # All values less than the given value.
+  name_lt: String
+
+  # All values less than or equal the given value.
+  name_lte: String
+
+  # All values greater than the given value.
+  name_gt: String
+
+  # All values greater than or equal the given value.
+  name_gte: String
+
+  # All values containing the given string.
+  name_contains: String
+
+  # All values not containing the given string.
+  name_not_contains: String
+
+  # All values starting with the given string.
+  name_starts_with: String
+
+  # All values not starting with the given string.
+  name_not_starts_with: String
+
+  # All values ending with the given string.
+  name_ends_with: String
+
+  # All values not ending with the given string.
+  name_not_ends_with: String
+  secret: String
+
+  # All values that are not equal to given value.
+  secret_not: String
+
+  # All values that are contained in given list.
+  secret_in: [String!]
+
+  # All values that are not contained in given list.
+  secret_not_in: [String!]
+
+  # All values less than the given value.
+  secret_lt: String
+
+  # All values less than or equal the given value.
+  secret_lte: String
+
+  # All values greater than the given value.
+  secret_gt: String
+
+  # All values greater than or equal the given value.
+  secret_gte: String
+
+  # All values containing the given string.
+  secret_contains: String
+
+  # All values not containing the given string.
+  secret_not_contains: String
+
+  # All values starting with the given string.
+  secret_starts_with: String
+
+  # All values not starting with the given string.
+  secret_not_starts_with: String
+
+  # All values ending with the given string.
+  secret_ends_with: String
+
+  # All values not ending with the given string.
+  secret_not_ends_with: String
+  size: Int
+
+  # All values that are not equal to given value.
+  size_not: Int
+
+  # All values that are contained in given list.
+  size_in: [Int!]
+
+  # All values that are not contained in given list.
+  size_not_in: [Int!]
+
+  # All values less than the given value.
+  size_lt: Int
+
+  # All values less than or equal the given value.
+  size_lte: Int
+
+  # All values greater than the given value.
+  size_gt: Int
+
+  # All values greater than or equal the given value.
+  size_gte: Int
+  updatedAt: DateTime
+
+  # All values that are not equal to given value.
+  updatedAt_not: DateTime
+
+  # All values that are contained in given list.
+  updatedAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  updatedAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  updatedAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  updatedAt_lte: DateTime
+
+  # All values greater than the given value.
+  updatedAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  updatedAt_gte: DateTime
+  url: String
+
+  # All values that are not equal to given value.
+  url_not: String
+
+  # All values that are contained in given list.
+  url_in: [String!]
+
+  # All values that are not contained in given list.
+  url_not_in: [String!]
+
+  # All values less than the given value.
+  url_lt: String
+
+  # All values less than or equal the given value.
+  url_lte: String
+
+  # All values greater than the given value.
+  url_gt: String
+
+  # All values greater than or equal the given value.
+  url_gte: String
+
+  # All values containing the given string.
+  url_contains: String
+
+  # All values not containing the given string.
+  url_not_contains: String
+
+  # All values starting with the given string.
+  url_starts_with: String
+
+  # All values not starting with the given string.
+  url_not_starts_with: String
+
+  # All values ending with the given string.
+  url_ends_with: String
+
+  # All values not ending with the given string.
+  url_not_ends_with: String
+}
+
+enum FileOrderBy {
+  contentType_ASC
+  contentType_DESC
+  createdAt_ASC
+  createdAt_DESC
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  secret_ASC
+  secret_DESC
+  size_ASC
+  size_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  url_ASC
+  url_DESC
+}
+
+type FilePreviousValues {
+  contentType: String!
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  secret: String!
+  size: Int!
+  updatedAt: DateTime!
+  url: String!
+}
+
+input FileSubscriptionFilter {
+  # Logical AND on all given filters.
+  AND: [FileSubscriptionFilter!]
+
+  # Logical OR on all given filters.
+  OR: [FileSubscriptionFilter!]
+
+  # The subscription event gets dispatched when it's listed in mutation_in
+  mutation_in: [_ModelMutationType!]
+
+  # The subscription event gets only dispatched when one of the updated fields names is included in this list
+  updatedFields_contains: String
+
+  # The subscription event gets only dispatched when all of the field names included in this list have been updated
+  updatedFields_contains_every: [String!]
+
+  # The subscription event gets only dispatched when some of the field names included in this list have been updated
+  updatedFields_contains_some: [String!]
+  node: FileSubscriptionFilterNode
+}
+
+input FileSubscriptionFilterNode {
+  contentType: String
+
+  # All values that are not equal to given value.
+  contentType_not: String
+
+  # All values that are contained in given list.
+  contentType_in: [String!]
+
+  # All values that are not contained in given list.
+  contentType_not_in: [String!]
+
+  # All values less than the given value.
+  contentType_lt: String
+
+  # All values less than or equal the given value.
+  contentType_lte: String
+
+  # All values greater than the given value.
+  contentType_gt: String
+
+  # All values greater than or equal the given value.
+  contentType_gte: String
+
+  # All values containing the given string.
+  contentType_contains: String
+
+  # All values not containing the given string.
+  contentType_not_contains: String
+
+  # All values starting with the given string.
+  contentType_starts_with: String
+
+  # All values not starting with the given string.
+  contentType_not_starts_with: String
+
+  # All values ending with the given string.
+  contentType_ends_with: String
+
+  # All values not ending with the given string.
+  contentType_not_ends_with: String
+  createdAt: DateTime
+
+  # All values that are not equal to given value.
+  createdAt_not: DateTime
+
+  # All values that are contained in given list.
+  createdAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  createdAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  createdAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  createdAt_lte: DateTime
+
+  # All values greater than the given value.
+  createdAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  createdAt_gte: DateTime
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  name: String
+
+  # All values that are not equal to given value.
+  name_not: String
+
+  # All values that are contained in given list.
+  name_in: [String!]
+
+  # All values that are not contained in given list.
+  name_not_in: [String!]
+
+  # All values less than the given value.
+  name_lt: String
+
+  # All values less than or equal the given value.
+  name_lte: String
+
+  # All values greater than the given value.
+  name_gt: String
+
+  # All values greater than or equal the given value.
+  name_gte: String
+
+  # All values containing the given string.
+  name_contains: String
+
+  # All values not containing the given string.
+  name_not_contains: String
+
+  # All values starting with the given string.
+  name_starts_with: String
+
+  # All values not starting with the given string.
+  name_not_starts_with: String
+
+  # All values ending with the given string.
+  name_ends_with: String
+
+  # All values not ending with the given string.
+  name_not_ends_with: String
+  secret: String
+
+  # All values that are not equal to given value.
+  secret_not: String
+
+  # All values that are contained in given list.
+  secret_in: [String!]
+
+  # All values that are not contained in given list.
+  secret_not_in: [String!]
+
+  # All values less than the given value.
+  secret_lt: String
+
+  # All values less than or equal the given value.
+  secret_lte: String
+
+  # All values greater than the given value.
+  secret_gt: String
+
+  # All values greater than or equal the given value.
+  secret_gte: String
+
+  # All values containing the given string.
+  secret_contains: String
+
+  # All values not containing the given string.
+  secret_not_contains: String
+
+  # All values starting with the given string.
+  secret_starts_with: String
+
+  # All values not starting with the given string.
+  secret_not_starts_with: String
+
+  # All values ending with the given string.
+  secret_ends_with: String
+
+  # All values not ending with the given string.
+  secret_not_ends_with: String
+  size: Int
+
+  # All values that are not equal to given value.
+  size_not: Int
+
+  # All values that are contained in given list.
+  size_in: [Int!]
+
+  # All values that are not contained in given list.
+  size_not_in: [Int!]
+
+  # All values less than the given value.
+  size_lt: Int
+
+  # All values less than or equal the given value.
+  size_lte: Int
+
+  # All values greater than the given value.
+  size_gt: Int
+
+  # All values greater than or equal the given value.
+  size_gte: Int
+  updatedAt: DateTime
+
+  # All values that are not equal to given value.
+  updatedAt_not: DateTime
+
+  # All values that are contained in given list.
+  updatedAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  updatedAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  updatedAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  updatedAt_lte: DateTime
+
+  # All values greater than the given value.
+  updatedAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  updatedAt_gte: DateTime
+  url: String
+
+  # All values that are not equal to given value.
+  url_not: String
+
+  # All values that are contained in given list.
+  url_in: [String!]
+
+  # All values that are not contained in given list.
+  url_not_in: [String!]
+
+  # All values less than the given value.
+  url_lt: String
+
+  # All values less than or equal the given value.
+  url_lte: String
+
+  # All values greater than the given value.
+  url_gt: String
+
+  # All values greater than or equal the given value.
+  url_gte: String
+
+  # All values containing the given string.
+  url_contains: String
+
+  # All values not containing the given string.
+  url_not_contains: String
+
+  # All values starting with the given string.
+  url_starts_with: String
+
+  # All values not starting with the given string.
+  url_not_starts_with: String
+
+  # All values ending with the given string.
+  url_ends_with: String
+
+  # All values not ending with the given string.
+  url_not_ends_with: String
+}
+
+type FileSubscriptionPayload {
+  mutation: _ModelMutationType!
+  node: File
+  updatedFields: [String!]
+  previousValues: FilePreviousValues
+}
+
+# Chat messages
+type Message implements Node {
+  asset(filter: AssetFilter): Asset
+  id: ID!
+  text: String!
+}
+
+input MessageassetAsset {
+  assetInfo: String!
+  assetUrl: String!
+  thumbnailUrl: String!
+  type: String!
+  stationId: ID
+  station: AssetstationStation
+  messagesIds: [ID!]
+  messages: [AssetmessagesMessage!]
+  usersIds: [ID!]
+}
+
+input MessageFilter {
+  # Logical AND on all given filters.
+  AND: [MessageFilter!]
+
+  # Logical OR on all given filters.
+  OR: [MessageFilter!]
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  text: String
+
+  # All values that are not equal to given value.
+  text_not: String
+
+  # All values that are contained in given list.
+  text_in: [String!]
+
+  # All values that are not contained in given list.
+  text_not_in: [String!]
+
+  # All values less than the given value.
+  text_lt: String
+
+  # All values less than or equal the given value.
+  text_lte: String
+
+  # All values greater than the given value.
+  text_gt: String
+
+  # All values greater than or equal the given value.
+  text_gte: String
+
+  # All values containing the given string.
+  text_contains: String
+
+  # All values not containing the given string.
+  text_not_contains: String
+
+  # All values starting with the given string.
+  text_starts_with: String
+
+  # All values not starting with the given string.
+  text_not_starts_with: String
+
+  # All values ending with the given string.
+  text_ends_with: String
+
+  # All values not ending with the given string.
+  text_not_ends_with: String
+  asset: AssetFilter
+}
+
+enum MessageOrderBy {
+  id_ASC
+  id_DESC
+  text_ASC
+  text_DESC
+}
+
+type MessagePreviousValues {
+  id: ID!
+  text: String!
+}
+
+input MessageSubscriptionFilter {
+  # Logical AND on all given filters.
+  AND: [MessageSubscriptionFilter!]
+
+  # Logical OR on all given filters.
+  OR: [MessageSubscriptionFilter!]
+
+  # The subscription event gets dispatched when it's listed in mutation_in
+  mutation_in: [_ModelMutationType!]
+
+  # The subscription event gets only dispatched when one of the updated fields names is included in this list
+  updatedFields_contains: String
+
+  # The subscription event gets only dispatched when all of the field names included in this list have been updated
+  updatedFields_contains_every: [String!]
+
+  # The subscription event gets only dispatched when some of the field names included in this list have been updated
+  updatedFields_contains_some: [String!]
+  node: MessageSubscriptionFilterNode
+}
+
+input MessageSubscriptionFilterNode {
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  text: String
+
+  # All values that are not equal to given value.
+  text_not: String
+
+  # All values that are contained in given list.
+  text_in: [String!]
+
+  # All values that are not contained in given list.
+  text_not_in: [String!]
+
+  # All values less than the given value.
+  text_lt: String
+
+  # All values less than or equal the given value.
+  text_lte: String
+
+  # All values greater than the given value.
+  text_gt: String
+
+  # All values greater than or equal the given value.
+  text_gte: String
+
+  # All values containing the given string.
+  text_contains: String
+
+  # All values not containing the given string.
+  text_not_contains: String
+
+  # All values starting with the given string.
+  text_starts_with: String
+
+  # All values not starting with the given string.
+  text_not_starts_with: String
+
+  # All values ending with the given string.
+  text_ends_with: String
+
+  # All values not ending with the given string.
+  text_not_ends_with: String
+  asset: AssetFilter
+}
+
+type MessageSubscriptionPayload {
+  mutation: _ModelMutationType!
+  node: Message
+  updatedFields: [String!]
+  previousValues: MessagePreviousValues
+}
+
+type Mutation {
+  createAsset(assetInfo: String!, assetUrl: String!, thumbnailUrl: String!, type: String!, stationId: ID, station: AssetstationStation, messagesIds: [ID!], messages: [AssetmessagesMessage!], usersIds: [ID!]): Asset
+  createCompany(companyInfo: String!, companyName: String!, projectId: ID, project: CompanyprojectProject, usersIds: [ID!]): Company
+  createFile(name: String!): File
+  createMessage(text: String!, assetId: ID, asset: MessageassetAsset): Message
+  createProject(projectInfo: String!, projectName: String!, companyId: ID, company: ProjectcompanyCompany): Project
+  createStation(stationInfo: String!, stationName: String!, assetsIds: [ID!], assets: [StationassetsAsset!], usersIds: [ID!]): Station
+  updateAsset(assetInfo: String, assetUrl: String, id: ID!, thumbnailUrl: String, type: String, stationId: ID, station: AssetstationStation, messagesIds: [ID!], messages: [AssetmessagesMessage!], usersIds: [ID!]): Asset
+  updateCompany(companyInfo: String, companyName: String, id: ID!, projectId: ID, project: CompanyprojectProject, usersIds: [ID!]): Company
+  updateFile(id: ID!, name: String): File
+  updateMessage(id: ID!, text: String, assetId: ID, asset: MessageassetAsset): Message
+  updateProject(id: ID!, projectInfo: String, projectName: String, companyId: ID, company: ProjectcompanyCompany): Project
+  updateStation(id: ID!, stationInfo: String, stationName: String, assetsIds: [ID!], assets: [StationassetsAsset!], usersIds: [ID!]): Station
+  updateUser(emailVerified: Boolean, id: ID!, userType: USER_TYPE, companyId: ID, company: UsercompanyCompany, assetsIds: [ID!], assets: [UserassetsAsset!], stationsIds: [ID!], stations: [UserstationsStation!]): User
+  updateOrCreateAsset(update: UpdateAsset!, create: CreateAsset!): Asset
+  updateOrCreateCompany(update: UpdateCompany!, create: CreateCompany!): Company
+  updateOrCreateFile(update: UpdateFile!, create: CreateFile!): File
+  updateOrCreateMessage(update: UpdateMessage!, create: CreateMessage!): Message
+  updateOrCreateProject(update: UpdateProject!, create: CreateProject!): Project
+  updateOrCreateStation(update: UpdateStation!, create: CreateStation!): Station
+  updateOrCreateUser(update: UpdateUser!, create: CreateUser!): User
+  deleteAsset(id: ID!): Asset
+  deleteCompany(id: ID!): Company
+  deleteFile(id: ID!): File
+  deleteMessage(id: ID!): Message
+  deleteProject(id: ID!): Project
+  deleteStation(id: ID!): Station
+  deleteUser(id: ID!): User
+  setProjectOnCompany(companyCompanyId: ID!, projectProjectId: ID!): SetProjectOnCompanyPayload
+  unsetProjectOnCompany(companyCompanyId: ID!, projectProjectId: ID!): UnsetProjectOnCompanyPayload
+  addToAssetOnStation(stationStationId: ID!, assetsAssetId: ID!): AddToAssetOnStationPayload
+  addToAssetOnUser(usersUserId: ID!, assetsAssetId: ID!): AddToAssetOnUserPayload
+  addToCompanyOnUser(usersUserId: ID!, companyCompanyId: ID!): AddToCompanyOnUserPayload
+  addToMessageOnAsset(assetAssetId: ID!, messagesMessageId: ID!): AddToMessageOnAssetPayload
+  addToUserOnStation(stationsStationId: ID!, usersUserId: ID!): AddToUserOnStationPayload
+  removeFromAssetOnStation(stationStationId: ID!, assetsAssetId: ID!): RemoveFromAssetOnStationPayload
+  removeFromAssetOnUser(usersUserId: ID!, assetsAssetId: ID!): RemoveFromAssetOnUserPayload
+  removeFromCompanyOnUser(usersUserId: ID!, companyCompanyId: ID!): RemoveFromCompanyOnUserPayload
+  removeFromMessageOnAsset(assetAssetId: ID!, messagesMessageId: ID!): RemoveFromMessageOnAssetPayload
+  removeFromUserOnStation(stationsStationId: ID!, usersUserId: ID!): RemoveFromUserOnStationPayload
+  signinUser(email: AUTH_PROVIDER_EMAIL): SigninPayload!
+  createUser(emailVerified: Boolean, userType: USER_TYPE!, companyId: ID, company: UsercompanyCompany, assetsIds: [ID!], assets: [UserassetsAsset!], stationsIds: [ID!], stations: [UserstationsStation!], authProvider: AuthProviderSignupData!): User
+}
+
+# An object with an ID
+interface Node {
+  # The id of the object.
+  id: ID!
+}
+
+# Client project
+type Project implements Node {
+  company(filter: CompanyFilter): Company
+  id: ID!
+  projectInfo: String!
+  projectName: String!
+}
+
+input ProjectcompanyCompany {
+  companyInfo: String!
+  companyName: String!
+  usersIds: [ID!]
+}
+
+input ProjectFilter {
+  # Logical AND on all given filters.
+  AND: [ProjectFilter!]
+
+  # Logical OR on all given filters.
+  OR: [ProjectFilter!]
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  projectInfo: String
+
+  # All values that are not equal to given value.
+  projectInfo_not: String
+
+  # All values that are contained in given list.
+  projectInfo_in: [String!]
+
+  # All values that are not contained in given list.
+  projectInfo_not_in: [String!]
+
+  # All values less than the given value.
+  projectInfo_lt: String
+
+  # All values less than or equal the given value.
+  projectInfo_lte: String
+
+  # All values greater than the given value.
+  projectInfo_gt: String
+
+  # All values greater than or equal the given value.
+  projectInfo_gte: String
+
+  # All values containing the given string.
+  projectInfo_contains: String
+
+  # All values not containing the given string.
+  projectInfo_not_contains: String
+
+  # All values starting with the given string.
+  projectInfo_starts_with: String
+
+  # All values not starting with the given string.
+  projectInfo_not_starts_with: String
+
+  # All values ending with the given string.
+  projectInfo_ends_with: String
+
+  # All values not ending with the given string.
+  projectInfo_not_ends_with: String
+  projectName: String
+
+  # All values that are not equal to given value.
+  projectName_not: String
+
+  # All values that are contained in given list.
+  projectName_in: [String!]
+
+  # All values that are not contained in given list.
+  projectName_not_in: [String!]
+
+  # All values less than the given value.
+  projectName_lt: String
+
+  # All values less than or equal the given value.
+  projectName_lte: String
+
+  # All values greater than the given value.
+  projectName_gt: String
+
+  # All values greater than or equal the given value.
+  projectName_gte: String
+
+  # All values containing the given string.
+  projectName_contains: String
+
+  # All values not containing the given string.
+  projectName_not_contains: String
+
+  # All values starting with the given string.
+  projectName_starts_with: String
+
+  # All values not starting with the given string.
+  projectName_not_starts_with: String
+
+  # All values ending with the given string.
+  projectName_ends_with: String
+
+  # All values not ending with the given string.
+  projectName_not_ends_with: String
+  company: CompanyFilter
+}
+
+enum ProjectOrderBy {
+  id_ASC
+  id_DESC
+  projectInfo_ASC
+  projectInfo_DESC
+  projectName_ASC
+  projectName_DESC
+}
+
+type ProjectPreviousValues {
+  id: ID!
+  projectInfo: String!
+  projectName: String!
+}
+
+input ProjectSubscriptionFilter {
+  # Logical AND on all given filters.
+  AND: [ProjectSubscriptionFilter!]
+
+  # Logical OR on all given filters.
+  OR: [ProjectSubscriptionFilter!]
+
+  # The subscription event gets dispatched when it's listed in mutation_in
+  mutation_in: [_ModelMutationType!]
+
+  # The subscription event gets only dispatched when one of the updated fields names is included in this list
+  updatedFields_contains: String
+
+  # The subscription event gets only dispatched when all of the field names included in this list have been updated
+  updatedFields_contains_every: [String!]
+
+  # The subscription event gets only dispatched when some of the field names included in this list have been updated
+  updatedFields_contains_some: [String!]
+  node: ProjectSubscriptionFilterNode
+}
+
+input ProjectSubscriptionFilterNode {
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  projectInfo: String
+
+  # All values that are not equal to given value.
+  projectInfo_not: String
+
+  # All values that are contained in given list.
+  projectInfo_in: [String!]
+
+  # All values that are not contained in given list.
+  projectInfo_not_in: [String!]
+
+  # All values less than the given value.
+  projectInfo_lt: String
+
+  # All values less than or equal the given value.
+  projectInfo_lte: String
+
+  # All values greater than the given value.
+  projectInfo_gt: String
+
+  # All values greater than or equal the given value.
+  projectInfo_gte: String
+
+  # All values containing the given string.
+  projectInfo_contains: String
+
+  # All values not containing the given string.
+  projectInfo_not_contains: String
+
+  # All values starting with the given string.
+  projectInfo_starts_with: String
+
+  # All values not starting with the given string.
+  projectInfo_not_starts_with: String
+
+  # All values ending with the given string.
+  projectInfo_ends_with: String
+
+  # All values not ending with the given string.
+  projectInfo_not_ends_with: String
+  projectName: String
+
+  # All values that are not equal to given value.
+  projectName_not: String
+
+  # All values that are contained in given list.
+  projectName_in: [String!]
+
+  # All values that are not contained in given list.
+  projectName_not_in: [String!]
+
+  # All values less than the given value.
+  projectName_lt: String
+
+  # All values less than or equal the given value.
+  projectName_lte: String
+
+  # All values greater than the given value.
+  projectName_gt: String
+
+  # All values greater than or equal the given value.
+  projectName_gte: String
+
+  # All values containing the given string.
+  projectName_contains: String
+
+  # All values not containing the given string.
+  projectName_not_contains: String
+
+  # All values starting with the given string.
+  projectName_starts_with: String
+
+  # All values not starting with the given string.
+  projectName_not_starts_with: String
+
+  # All values ending with the given string.
+  projectName_ends_with: String
+
+  # All values not ending with the given string.
+  projectName_not_ends_with: String
+  company: CompanyFilter
+}
+
+type ProjectSubscriptionPayload {
+  mutation: _ModelMutationType!
+  node: Project
+  updatedFields: [String!]
+  previousValues: ProjectPreviousValues
+}
+
+type Query {
+  allAssets(filter: AssetFilter, orderBy: AssetOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [Asset!]!
+  allCompanies(filter: CompanyFilter, orderBy: CompanyOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [Company!]!
+  allFiles(filter: FileFilter, orderBy: FileOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [File!]!
+  allMessages(filter: MessageFilter, orderBy: MessageOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [Message!]!
+  allProjects(filter: ProjectFilter, orderBy: ProjectOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [Project!]!
+  allStations(filter: StationFilter, orderBy: StationOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [Station!]!
+  allUsers(filter: UserFilter, orderBy: UserOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [User!]!
+  _allAssetsMeta(filter: AssetFilter, orderBy: AssetOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
+  _allCompaniesMeta(filter: CompanyFilter, orderBy: CompanyOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
+  _allFilesMeta(filter: FileFilter, orderBy: FileOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
+  _allMessagesMeta(filter: MessageFilter, orderBy: MessageOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
+  _allProjectsMeta(filter: ProjectFilter, orderBy: ProjectOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
+  _allStationsMeta(filter: StationFilter, orderBy: StationOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
+  _allUsersMeta(filter: UserFilter, orderBy: UserOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
+  Asset(id: ID): Asset
+  Company(id: ID): Company
+  File(id: ID, secret: String, url: String): File
+  Message(id: ID): Message
+  Project(id: ID): Project
+  Station(id: ID): Station
+  User(email: String, id: ID): User
+  user: User
+
+  # Fetches an object given its ID
+  node(
+    # The ID of an object
+    id: ID!
+  ): Node
+}
+
+type RemoveFromAssetOnStationPayload {
+  assetsAsset: Asset
+  stationStation: Station
+}
+
+type RemoveFromAssetOnUserPayload {
+  assetsAsset: Asset
+  usersUser: User
+}
+
+type RemoveFromCompanyOnUserPayload {
+  companyCompany: Company
+  usersUser: User
+}
+
+type RemoveFromMessageOnAssetPayload {
+  messagesMessage: Message
+  assetAsset: Asset
+}
+
+type RemoveFromUserOnStationPayload {
+  usersUser: User
+  stationsStation: Station
+}
+
+type SetProjectOnCompanyPayload {
+  projectProject: Project
+  companyCompany: Company
+}
+
+# If authentication was successful the payload contains the user and a token. If unsuccessful this payload is null.
+type SigninPayload {
+  token: String
+  user: User
+}
+
+# Stations associated with a project
+type Station implements Node {
+  assets(filter: AssetFilter, orderBy: AssetOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [Asset!]
+  id: ID!
+  stationInfo: String!
+  stationName: String!
+  users(filter: UserFilter, orderBy: UserOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
+
+  # Meta information about the query.
+  _assetsMeta(filter: AssetFilter, orderBy: AssetOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
+
+  # Meta information about the query.
+  _usersMeta(filter: UserFilter, orderBy: UserOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
+}
+
+input StationassetsAsset {
+  assetInfo: String!
+  assetUrl: String!
+  thumbnailUrl: String!
+  type: String!
+  messagesIds: [ID!]
+  messages: [AssetmessagesMessage!]
+  usersIds: [ID!]
+}
+
+input StationFilter {
+  # Logical AND on all given filters.
+  AND: [StationFilter!]
+
+  # Logical OR on all given filters.
+  OR: [StationFilter!]
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  stationInfo: String
+
+  # All values that are not equal to given value.
+  stationInfo_not: String
+
+  # All values that are contained in given list.
+  stationInfo_in: [String!]
+
+  # All values that are not contained in given list.
+  stationInfo_not_in: [String!]
+
+  # All values less than the given value.
+  stationInfo_lt: String
+
+  # All values less than or equal the given value.
+  stationInfo_lte: String
+
+  # All values greater than the given value.
+  stationInfo_gt: String
+
+  # All values greater than or equal the given value.
+  stationInfo_gte: String
+
+  # All values containing the given string.
+  stationInfo_contains: String
+
+  # All values not containing the given string.
+  stationInfo_not_contains: String
+
+  # All values starting with the given string.
+  stationInfo_starts_with: String
+
+  # All values not starting with the given string.
+  stationInfo_not_starts_with: String
+
+  # All values ending with the given string.
+  stationInfo_ends_with: String
+
+  # All values not ending with the given string.
+  stationInfo_not_ends_with: String
+  stationName: String
+
+  # All values that are not equal to given value.
+  stationName_not: String
+
+  # All values that are contained in given list.
+  stationName_in: [String!]
+
+  # All values that are not contained in given list.
+  stationName_not_in: [String!]
+
+  # All values less than the given value.
+  stationName_lt: String
+
+  # All values less than or equal the given value.
+  stationName_lte: String
+
+  # All values greater than the given value.
+  stationName_gt: String
+
+  # All values greater than or equal the given value.
+  stationName_gte: String
+
+  # All values containing the given string.
+  stationName_contains: String
+
+  # All values not containing the given string.
+  stationName_not_contains: String
+
+  # All values starting with the given string.
+  stationName_starts_with: String
+
+  # All values not starting with the given string.
+  stationName_not_starts_with: String
+
+  # All values ending with the given string.
+  stationName_ends_with: String
+
+  # All values not ending with the given string.
+  stationName_not_ends_with: String
+  assets_every: AssetFilter
+  assets_some: AssetFilter
+  assets_none: AssetFilter
+  users_every: UserFilter
+  users_some: UserFilter
+  users_none: UserFilter
+}
+
+enum StationOrderBy {
+  id_ASC
+  id_DESC
+  stationInfo_ASC
+  stationInfo_DESC
+  stationName_ASC
+  stationName_DESC
+}
+
+type StationPreviousValues {
+  id: ID!
+  stationInfo: String!
+  stationName: String!
+}
+
+input StationSubscriptionFilter {
+  # Logical AND on all given filters.
+  AND: [StationSubscriptionFilter!]
+
+  # Logical OR on all given filters.
+  OR: [StationSubscriptionFilter!]
+
+  # The subscription event gets dispatched when it's listed in mutation_in
+  mutation_in: [_ModelMutationType!]
+
+  # The subscription event gets only dispatched when one of the updated fields names is included in this list
+  updatedFields_contains: String
+
+  # The subscription event gets only dispatched when all of the field names included in this list have been updated
+  updatedFields_contains_every: [String!]
+
+  # The subscription event gets only dispatched when some of the field names included in this list have been updated
+  updatedFields_contains_some: [String!]
+  node: StationSubscriptionFilterNode
+}
+
+input StationSubscriptionFilterNode {
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  stationInfo: String
+
+  # All values that are not equal to given value.
+  stationInfo_not: String
+
+  # All values that are contained in given list.
+  stationInfo_in: [String!]
+
+  # All values that are not contained in given list.
+  stationInfo_not_in: [String!]
+
+  # All values less than the given value.
+  stationInfo_lt: String
+
+  # All values less than or equal the given value.
+  stationInfo_lte: String
+
+  # All values greater than the given value.
+  stationInfo_gt: String
+
+  # All values greater than or equal the given value.
+  stationInfo_gte: String
+
+  # All values containing the given string.
+  stationInfo_contains: String
+
+  # All values not containing the given string.
+  stationInfo_not_contains: String
+
+  # All values starting with the given string.
+  stationInfo_starts_with: String
+
+  # All values not starting with the given string.
+  stationInfo_not_starts_with: String
+
+  # All values ending with the given string.
+  stationInfo_ends_with: String
+
+  # All values not ending with the given string.
+  stationInfo_not_ends_with: String
+  stationName: String
+
+  # All values that are not equal to given value.
+  stationName_not: String
+
+  # All values that are contained in given list.
+  stationName_in: [String!]
+
+  # All values that are not contained in given list.
+  stationName_not_in: [String!]
+
+  # All values less than the given value.
+  stationName_lt: String
+
+  # All values less than or equal the given value.
+  stationName_lte: String
+
+  # All values greater than the given value.
+  stationName_gt: String
+
+  # All values greater than or equal the given value.
+  stationName_gte: String
+
+  # All values containing the given string.
+  stationName_contains: String
+
+  # All values not containing the given string.
+  stationName_not_contains: String
+
+  # All values starting with the given string.
+  stationName_starts_with: String
+
+  # All values not starting with the given string.
+  stationName_not_starts_with: String
+
+  # All values ending with the given string.
+  stationName_ends_with: String
+
+  # All values not ending with the given string.
+  stationName_not_ends_with: String
+  assets_every: AssetFilter
+  assets_some: AssetFilter
+  assets_none: AssetFilter
+  users_every: UserFilter
+  users_some: UserFilter
+  users_none: UserFilter
+}
+
+type StationSubscriptionPayload {
+  mutation: _ModelMutationType!
+  node: Station
+  updatedFields: [String!]
+  previousValues: StationPreviousValues
+}
+
+type Subscription {
+  Asset(filter: AssetSubscriptionFilter): AssetSubscriptionPayload
+  Company(filter: CompanySubscriptionFilter): CompanySubscriptionPayload
+  File(filter: FileSubscriptionFilter): FileSubscriptionPayload
+  Message(filter: MessageSubscriptionFilter): MessageSubscriptionPayload
+  Project(filter: ProjectSubscriptionFilter): ProjectSubscriptionPayload
+  Station(filter: StationSubscriptionFilter): StationSubscriptionPayload
+  User(filter: UserSubscriptionFilter): UserSubscriptionPayload
+}
+
+type UnsetProjectOnCompanyPayload {
+  projectProject: Project
+  companyCompany: Company
+}
+
+input UpdateAsset {
+  assetInfo: String
+  assetUrl: String
+  id: ID!
+  thumbnailUrl: String
+  type: String
+  stationId: ID
+  station: AssetstationStation
+  messagesIds: [ID!]
+  messages: [AssetmessagesMessage!]
+  usersIds: [ID!]
+}
+
+input UpdateCompany {
+  companyInfo: String
+  companyName: String
+  id: ID!
+  projectId: ID
+  project: CompanyprojectProject
+  usersIds: [ID!]
+}
+
+input UpdateFile {
+  id: ID!
+  name: String
+}
+
+input UpdateMessage {
+  id: ID!
+  text: String
+  assetId: ID
+  asset: MessageassetAsset
+}
+
+input UpdateProject {
+  id: ID!
+  projectInfo: String
+  projectName: String
+  companyId: ID
+  company: ProjectcompanyCompany
+}
+
+input UpdateStation {
+  id: ID!
+  stationInfo: String
+  stationName: String
+  assetsIds: [ID!]
+  assets: [StationassetsAsset!]
+  usersIds: [ID!]
+}
+
+input UpdateUser {
+  emailVerified: Boolean
+  id: ID!
+  userType: USER_TYPE
+  companyId: ID
+  company: UsercompanyCompany
+  assetsIds: [ID!]
+  assets: [UserassetsAsset!]
+  stationsIds: [ID!]
+  stations: [UserstationsStation!]
+}
+
+type User implements Node {
+  assets(filter: AssetFilter, orderBy: AssetOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [Asset!]
+  company(filter: CompanyFilter): Company
+  createdAt: DateTime!
+  email: String
+  emailVerified: Boolean!
+  id: ID!
+  password: String
+  stations(filter: StationFilter, orderBy: StationOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [Station!]
+  updatedAt: DateTime!
+  userType: USER_TYPE!
+
+  # Meta information about the query.
+  _assetsMeta(filter: AssetFilter, orderBy: AssetOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
+
+  # Meta information about the query.
+  _stationsMeta(filter: StationFilter, orderBy: StationOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
+}
+
+enum USER_TYPE {
+  COMPANY
+  EMPLOYEE
+}
+
+input UserassetsAsset {
+  assetInfo: String!
+  assetUrl: String!
+  thumbnailUrl: String!
+  type: String!
+  stationId: ID
+  station: AssetstationStation
+  messagesIds: [ID!]
+  messages: [AssetmessagesMessage!]
+  usersIds: [ID!]
+}
+
+input UsercompanyCompany {
+  companyInfo: String!
+  companyName: String!
+  projectId: ID
+  project: CompanyprojectProject
+  usersIds: [ID!]
+}
+
+input UserFilter {
+  # Logical AND on all given filters.
+  AND: [UserFilter!]
+
+  # Logical OR on all given filters.
+  OR: [UserFilter!]
+  createdAt: DateTime
+
+  # All values that are not equal to given value.
+  createdAt_not: DateTime
+
+  # All values that are contained in given list.
+  createdAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  createdAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  createdAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  createdAt_lte: DateTime
+
+  # All values greater than the given value.
+  createdAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  createdAt_gte: DateTime
+  email: String
+
+  # All values that are not equal to given value.
+  email_not: String
+
+  # All values that are contained in given list.
+  email_in: [String!]
+
+  # All values that are not contained in given list.
+  email_not_in: [String!]
+
+  # All values less than the given value.
+  email_lt: String
+
+  # All values less than or equal the given value.
+  email_lte: String
+
+  # All values greater than the given value.
+  email_gt: String
+
+  # All values greater than or equal the given value.
+  email_gte: String
+
+  # All values containing the given string.
+  email_contains: String
+
+  # All values not containing the given string.
+  email_not_contains: String
+
+  # All values starting with the given string.
+  email_starts_with: String
+
+  # All values not starting with the given string.
+  email_not_starts_with: String
+
+  # All values ending with the given string.
+  email_ends_with: String
+
+  # All values not ending with the given string.
+  email_not_ends_with: String
+  emailVerified: Boolean
+
+  # All values that are not equal to given value.
+  emailVerified_not: Boolean
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  password: String
+
+  # All values that are not equal to given value.
+  password_not: String
+
+  # All values that are contained in given list.
+  password_in: [String!]
+
+  # All values that are not contained in given list.
+  password_not_in: [String!]
+
+  # All values less than the given value.
+  password_lt: String
+
+  # All values less than or equal the given value.
+  password_lte: String
+
+  # All values greater than the given value.
+  password_gt: String
+
+  # All values greater than or equal the given value.
+  password_gte: String
+
+  # All values containing the given string.
+  password_contains: String
+
+  # All values not containing the given string.
+  password_not_contains: String
+
+  # All values starting with the given string.
+  password_starts_with: String
+
+  # All values not starting with the given string.
+  password_not_starts_with: String
+
+  # All values ending with the given string.
+  password_ends_with: String
+
+  # All values not ending with the given string.
+  password_not_ends_with: String
+  updatedAt: DateTime
+
+  # All values that are not equal to given value.
+  updatedAt_not: DateTime
+
+  # All values that are contained in given list.
+  updatedAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  updatedAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  updatedAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  updatedAt_lte: DateTime
+
+  # All values greater than the given value.
+  updatedAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  updatedAt_gte: DateTime
+  userType: USER_TYPE
+
+  # All values that are not equal to given value.
+  userType_not: USER_TYPE
+
+  # All values that are contained in given list.
+  userType_in: [USER_TYPE!]
+
+  # All values that are not contained in given list.
+  userType_not_in: [USER_TYPE!]
+  assets_every: AssetFilter
+  assets_some: AssetFilter
+  assets_none: AssetFilter
+  company: CompanyFilter
+  stations_every: StationFilter
+  stations_some: StationFilter
+  stations_none: StationFilter
+}
+
+enum UserOrderBy {
+  createdAt_ASC
+  createdAt_DESC
+  email_ASC
+  email_DESC
+  emailVerified_ASC
+  emailVerified_DESC
+  id_ASC
+  id_DESC
+  password_ASC
+  password_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  userType_ASC
+  userType_DESC
+}
+
+type UserPreviousValues {
+  createdAt: DateTime!
+  email: String
+  emailVerified: Boolean!
+  id: ID!
+  password: String
+  updatedAt: DateTime!
+  userType: USER_TYPE!
+}
+
+input UserstationsStation {
+  stationInfo: String!
+  stationName: String!
+  assetsIds: [ID!]
+  assets: [StationassetsAsset!]
+  usersIds: [ID!]
+}
+
+input UserSubscriptionFilter {
+  # Logical AND on all given filters.
+  AND: [UserSubscriptionFilter!]
+
+  # Logical OR on all given filters.
+  OR: [UserSubscriptionFilter!]
+
+  # The subscription event gets dispatched when it's listed in mutation_in
+  mutation_in: [_ModelMutationType!]
+
+  # The subscription event gets only dispatched when one of the updated fields names is included in this list
+  updatedFields_contains: String
+
+  # The subscription event gets only dispatched when all of the field names included in this list have been updated
+  updatedFields_contains_every: [String!]
+
+  # The subscription event gets only dispatched when some of the field names included in this list have been updated
+  updatedFields_contains_some: [String!]
+  node: UserSubscriptionFilterNode
+}
+
+input UserSubscriptionFilterNode {
+  createdAt: DateTime
+
+  # All values that are not equal to given value.
+  createdAt_not: DateTime
+
+  # All values that are contained in given list.
+  createdAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  createdAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  createdAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  createdAt_lte: DateTime
+
+  # All values greater than the given value.
+  createdAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  createdAt_gte: DateTime
+  email: String
+
+  # All values that are not equal to given value.
+  email_not: String
+
+  # All values that are contained in given list.
+  email_in: [String!]
+
+  # All values that are not contained in given list.
+  email_not_in: [String!]
+
+  # All values less than the given value.
+  email_lt: String
+
+  # All values less than or equal the given value.
+  email_lte: String
+
+  # All values greater than the given value.
+  email_gt: String
+
+  # All values greater than or equal the given value.
+  email_gte: String
+
+  # All values containing the given string.
+  email_contains: String
+
+  # All values not containing the given string.
+  email_not_contains: String
+
+  # All values starting with the given string.
+  email_starts_with: String
+
+  # All values not starting with the given string.
+  email_not_starts_with: String
+
+  # All values ending with the given string.
+  email_ends_with: String
+
+  # All values not ending with the given string.
+  email_not_ends_with: String
+  emailVerified: Boolean
+
+  # All values that are not equal to given value.
+  emailVerified_not: Boolean
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  password: String
+
+  # All values that are not equal to given value.
+  password_not: String
+
+  # All values that are contained in given list.
+  password_in: [String!]
+
+  # All values that are not contained in given list.
+  password_not_in: [String!]
+
+  # All values less than the given value.
+  password_lt: String
+
+  # All values less than or equal the given value.
+  password_lte: String
+
+  # All values greater than the given value.
+  password_gt: String
+
+  # All values greater than or equal the given value.
+  password_gte: String
+
+  # All values containing the given string.
+  password_contains: String
+
+  # All values not containing the given string.
+  password_not_contains: String
+
+  # All values starting with the given string.
+  password_starts_with: String
+
+  # All values not starting with the given string.
+  password_not_starts_with: String
+
+  # All values ending with the given string.
+  password_ends_with: String
+
+  # All values not ending with the given string.
+  password_not_ends_with: String
+  updatedAt: DateTime
+
+  # All values that are not equal to given value.
+  updatedAt_not: DateTime
+
+  # All values that are contained in given list.
+  updatedAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  updatedAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  updatedAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  updatedAt_lte: DateTime
+
+  # All values greater than the given value.
+  updatedAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  updatedAt_gte: DateTime
+  userType: USER_TYPE
+
+  # All values that are not equal to given value.
+  userType_not: USER_TYPE
+
+  # All values that are contained in given list.
+  userType_in: [USER_TYPE!]
+
+  # All values that are not contained in given list.
+  userType_not_in: [USER_TYPE!]
+  assets_every: AssetFilter
+  assets_some: AssetFilter
+  assets_none: AssetFilter
+  company: CompanyFilter
+  stations_every: StationFilter
+  stations_some: StationFilter
+  stations_none: StationFilter
+}
+
+type UserSubscriptionPayload {
+  mutation: _ModelMutationType!
+  node: User
+  updatedFields: [String!]
+  previousValues: UserPreviousValues
+}
+
